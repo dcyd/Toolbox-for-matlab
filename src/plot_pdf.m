@@ -31,15 +31,21 @@ function [H,nz_y,nz_x] = plot_pdf(x,inver_num,show_figure,color_buff,marker_buff
     end
     %     bc_prob=prob./bin_length'/length(data);
     % figure;
-    if show_figure==1 && is_log==1
+    if is_log==1
         bc_prob=prob./bin_length'/length(x);
-        Non_zero_tag = find(bc_prob>0);
-        H=loglog(x_bins(Non_zero_tag),bc_prob(Non_zero_tag),'LineStyle','none','Color',color_buff,'Marker',marker_buff,'MarkerFaceColor','none','MarkerSize',2); hold on;
-    elseif show_figure==1 && is_log == 0
+        if show_figure==1
+            Non_zero_tag = find(bc_prob>0);
+            H=loglog(x_bins(Non_zero_tag),bc_prob(Non_zero_tag),'LineStyle','none','Color',color_buff,'Marker',marker_buff,'MarkerFaceColor','none','MarkerSize',2); hold on;
+        else
+            H=0;
+        end
+    elseif is_log == 0
         bc_prob=prob./length(x);
-        H=plot(x_bins,bc_prob,'LineStyle','-','Color',color_buff,'Marker',marker_buff,'MarkerFaceColor','none','MarkerSize',4); hold on;
-    else
-        H=0;
+        if show_figure==1
+            H=plot(x_bins,bc_prob,'LineStyle','-','Color',color_buff,'Marker',marker_buff,'MarkerFaceColor','none','MarkerSize',4); hold on;
+        else
+            H=0;
+        end
     end
 
     if is_log
