@@ -1,5 +1,5 @@
 % collect the wonderful colormap
-function colormap_set = color_list()
+function colormap_set = my_color_list()
     colormap_set = struct;
     % from 10.1038/s41467-017-02374-7, fig. 3j
     rgb5 = [133 6   33
